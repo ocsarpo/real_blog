@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/reloader'
 require 'data_mapper' # metagem, requires common plugins too.
 
 set :bind, '0.0.0.0'
@@ -15,12 +16,22 @@ class Post
   property :created_at, DateTime
 end
 
+class User
+  include DataMapper::Resource
+  property :id, Serial
+  property :email, String
+  property :password, Text
+  property :created_at, DateTime
+end
+
+
 # Perform basic sanity checks and initialize all relationships
 # Call this when you've defined all your models
 DataMapper.finalize
 
 # automatically create the post table
 Post.auto_upgrade!
+User.auto_upgrade!
 
 get '/' do
   @post = Post.all.reverse  #최신 순
@@ -33,4 +44,21 @@ get '/abap' do
     :body => params["content"]
   )
   redirect to '/'
+end
+
+get '/signup' do
+  erb :signup
+end
+
+get '/register' do
+  User.create(
+    :email => params["email"],
+    :password => params["password"]
+  )
+  redirect to '/'
+end
+
+get '/admin' do
+  # 모든 유저를 불러와
+  # admin.erb에서 모든 유저를 보여준다
 end

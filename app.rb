@@ -61,4 +61,6 @@ end
 get '/admin' do
   # 모든 유저를 불러와
   # admin.erb에서 모든 유저를 보여준다
+  @users = User.all
+  erb :admin
 end

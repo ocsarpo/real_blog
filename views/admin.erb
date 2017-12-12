@@ -14,28 +14,15 @@
     <li class="nav-item">
       <a class="nav-link" href="/signup">회원가입</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/admin">회원목록</a>
-    </li>
   </ul>
-  <h1>Welcome to Real Blog! </h1>
-  <form action="/abap">
-    <div class="form-group">
-      <label for="exampleInputEmail1">제목</label>
-      <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="제목을 입력해주세요">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">내용</label>
-      <textarea name="content" class="form-control" id="exampleInputPassword1" placeholder="내용입력해주세요"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-
-  <% @post.each do |po| %>
+  <h1>관리자페이지</h1>
+  <% @users.each do |u| %>
     <div class="card">
       <div class="card-body">
-        <p>제목 : <%=po.title%></p>
-        <p>내용 : <%=po.body%></p>
+        <p>번호 : <%=u.id%>
+        <p>이메일 : <%=u.email%></p>
+        <p>비밀번호 : <%=u.password%></p>
+        <p> <%=u.created_at %> </p>
       </div>
     </div>
   <% end %>

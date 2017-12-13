@@ -1,4 +1,3 @@
-# need install dm-sqlite-adapter
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/blog.db")
 
 class Post

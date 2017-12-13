@@ -10,7 +10,7 @@ set :bind, '0.0.0.0'
 enable :sessions
 
 get '/' do
-  @post = Post.all.reverse  #최신 순
+  @post = Post.all.reverse  #최신 순서
   erb :index
 end
 

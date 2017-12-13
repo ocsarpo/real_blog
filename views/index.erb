@@ -1,25 +1,5 @@
-<html>
-<head>
-  <title>Real blog</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-</head>
-<body>
-  <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link active" href="/">홈으로</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/signup">회원가입</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/admin">회원목록</a>
-    </li>
-  </ul>
-  <h1>Welcome to Real Blog! </h1>
-  <form action="/abap">
+<%if session[:email]%>
+  <form action="/write">
     <div class="form-group">
       <label for="exampleInputEmail1">제목</label>
       <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="제목을 입력해주세요">
@@ -29,16 +9,15 @@
       <textarea name="content" class="form-control" id="exampleInputPassword1" placeholder="내용입력해주세요"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    <input type="hidden" name="writer" value="<%=session[:email]%>"/>
   </form>
-
+<%end%>
   <% @post.each do |po| %>
     <div class="card">
       <div class="card-body">
-        <p>제목 : <%=po.title%></p>
+        <p><h4>제목 : <%=po.title%></h4></p>
+        <p>글쓴이: <%=po.writer%><p>
         <p>내용 : <%=po.body%></p>
       </div>
     </div>
   <% end %>
-
-</body>
-</html>

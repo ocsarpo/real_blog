@@ -1,0 +1,62 @@
+<form action="/change">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" readonly value="<%=@UserInfo.email%>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" readonly value="<%=@UserInfo.password%>">
+    </div>
+  </div>
+  <fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-legend col-sm-2">권한</legend>
+      <div class="col-sm-10">
+        <%if @UserInfo.is_admin%>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="author" id="gridRadios1" value="admin" checked>
+              관리자
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="author" id="gridRadios2" value="normal">
+              일반사용자
+            </label>
+          </div>
+        <%else%>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="author" id="gridRadios1" value="admin">
+              관리자
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="author" id="gridRadios2" value="normal" checked>
+              일반사용자
+            </label>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </fieldset>
+  <input type="hidden" value="<%=@UserInfo.id%>" name="id">
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">수정</button>
+    </div>
+  </div>
+
+</form>
+
+
+번호 : <%=@UserInfo.id%><br>
+이메일 : <%=@UserInfo.email%><br>
+비밀번호 : <%=@UserInfo.password%><br>
+권한 : <%=@UserInfo.is_admin%><br>
+계정생성일 : <%=@UserInfo.created_at%><br>
